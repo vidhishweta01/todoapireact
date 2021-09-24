@@ -1,9 +1,8 @@
 import { combineReducers } from 'redux';
-import todoReducer from './pokeReducer';
+import todoReducer from './todo_reducer';
 
 const rootReducer = combineReducers({
-  PokeReducer,
-  todoReducer
+  todoReducer,
 });
 
 export default rootReducer;

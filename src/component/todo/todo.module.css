@@ -1,0 +1,31 @@
+.card {
+  width: 50%;
+  height: 10vh;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  margin: 25px auto;
+  padding: 15px;
+  background-color: #fff;
+  align-items: center;
+  border: solid 1px #e8e8e8;
+  border-radius: 8px;
+  box-shadow: 4px 8px 6px #aaa;
+}
+
+.todo {
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.button {
+  margin-right: 2px;
+  background-color: coral;
+  color: cornsilk;
+  border-radius: 8px;
+  padding: 5px;
+  border-color: transparent;
+}

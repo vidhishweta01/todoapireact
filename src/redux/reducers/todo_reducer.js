@@ -1,4 +1,4 @@
-import ActionTypes from "../action/action_types";
+import ActionTypes from '../action/action_types';
 import initialState from '../store/initial_state';
 
 const TodoReducer = (state = initialState, action) => {
@@ -22,7 +22,8 @@ const TodoReducer = (state = initialState, action) => {
         loading: false,
         error: '',
       };
-    default:
-      return state;
+    default: return state;
   }
 };
+
+export default TodoReducer;

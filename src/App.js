@@ -6,7 +6,7 @@ function App() {
   return (
     <div className="App">
       <Switch>
-      <Route path="/" component={todosList} exact />
+        <Route path="/" component={todosList} exact />
       </Switch>
     </div>
   );
