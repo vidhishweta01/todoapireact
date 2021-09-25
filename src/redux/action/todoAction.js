@@ -30,14 +30,15 @@ const PostData = (data) => async (dispatch) => {
   dispatch({
     type: ActionTypes.CreateTodo,
   });
-
+  console.log(data); //eslint-disable-line
   try {
-    const response = await axios.post('https://secure-ocean-64470.herokuapp.com/api/v1/todos', data,
+    const response = await axios.post('https://secure-ocean-64470.herokuapp.com/api/v1/todos',
       {
         headers: {
           'Content-Type': 'application/json',
           token: 'eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxM30.d2uekGOXSDVgfqjon8T-QFHhfFGLAz3eE9nH3WpgldY',
         },
+        data,
       });
     dispatch({
       type: ActionTypes.PostSuccess,

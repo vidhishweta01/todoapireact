@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { FetchData } from '../../redux/action/todoAction';
 import Todo from '../todo';
+import todoForm from '../todoForm/todoForm';
 
 const todosList = () => {
   const dispatch = useDispatch();
@@ -25,7 +26,12 @@ const todosList = () => {
     }
     return <h1>cannot get pokemon list try again</h1>;
   };
-  return (<div>{renderTodoList()}</div>);
+  return (
+    <div>
+      {todoForm()}
+      {renderTodoList()}
+    </div>
+  );
 };
 
 export default todosList;
