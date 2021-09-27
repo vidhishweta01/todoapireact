@@ -1,17 +1,60 @@
 import axios from 'axios';
 import ActionTypes from './action_types';
 
-const FetchData = () => async (dispatch) => {
+const Registeration = (data) => async (dispatch) => {
+  dispatch({ type: ActionTypes.RegisterationLoading });
+
+  try {
+    const response = await axios({
+      method: 'post',
+      url: 'https://vast-eyrie-23535.herokuapp.com/api/v1/registeration',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      data: { email: 'kartik19@gmail.com', password: 'Shaurya123*', password_confirmation: 'Shaurya123*' },
+    });
+    dispatch({ type: ActionTypes.RegisterationSuccess, payload: response.data });
+  } catch (error) {
+    dispatch({ type: ActionTypes.POST_TODO_FAILURE, error });
+  }
+};
+
+const SignIn = (data) => async (dispatch) => {
+  dispatch({ type: ActionTypes.RegisterationLoading });
+
+  try {
+    const response = await axios({
+      method: 'post',
+      url: 'https://vast-eyrie-23535.herokuapp.com/api/v1/login',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      data,
+    });
+    dispatch({ type: ActionTypes.RegisterationSuccess, payload: response.data });
+  } catch (error) {
+    dispatch({ type: ActionTypes.POST_TODO_FAILURE, error });
+  }
+};
+
+const SignOut = () => (
+  {
+    type: ActionTypes.SignOut,
+    value: null,
+  }
+);
+
+const FetchData = (token) => async (dispatch) => {
   dispatch({
     type: ActionTypes.FetchLoading,
   });
 
   try {
-    const response = await axios.get('https://boiling-shelf-13431.herokuapp.com/api/v1/todos',
+    const response = await axios.get('https://vast-eyrie-23535.herokuapp.com/api/v1/todos',
       {
         headers: {
           'Content-Type': 'application/json',
-          token: 'eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxfQ.DiPWrOKsx3sPeVClrm_j07XNdSYHgBa3Qctosdxax3w',
+          token,
         },
       });
     dispatch({
@@ -26,18 +69,18 @@ const FetchData = () => async (dispatch) => {
   }
 };
 
-const PostData = () => async (dispatch) => {
+const PostData = (data, token) => async (dispatch) => {
   dispatch({ type: ActionTypes.PostTodoLoading });
 
   try {
     const response = await axios({
       method: 'post',
-      url: 'https://boiling-shelf-13431.herokuapp.com/api/v1/todos',
+      url: 'https://vast-eyrie-23535.herokuapp.com/api/v1/todos',
       headers: {
         'Content-Type': 'application/json',
-        token: 'eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxfQ.DiPWrOKsx3sPeVClrm_j07XNdSYHgBa3Qctosdxax3w',
+        token,
       },
-      data: { title: 'testpost33', created_by: 'testpost22', user_id: 1 },
+      data,
     });
     dispatch({ type: ActionTypes.POST_TODO_SUCCESS, payload: response.data });
   } catch (error) {
@@ -45,22 +88,6 @@ const PostData = () => async (dispatch) => {
   }
 };
 
-const Registeration = () => async (dispatch) => {
-  dispatch({ type: ActionTypes.RegisterationLoading });
-
-  try {
-    const response = await axios({
-      method: 'post',
-      url: 'https://boiling-shelf-13431.herokuapp.com/api/v1/registeration',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      data: { email: 'vidhishweta01@gmail.com', password: 'Shaurya123*', password_confirmation: 'Shaurya123*' }
-    });
-    dispatch({ type: ActionTypes.RegisterationSuccess, payload: response.data });
-  } catch (error) {
-    dispatch({ type: ActionTypes.POST_TODO_FAILURE, error });
-  }
+export {
+  Registeration, SignIn, SignOut, FetchData, PostData,
 };
-
-export { FetchData, PostData };

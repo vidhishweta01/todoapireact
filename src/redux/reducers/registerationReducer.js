@@ -24,6 +24,29 @@ const RegisterationReducer = (state = initialStateRegisteration, action) => {
         ...state,
         error: action.error,
       };
+    case ActionTypes.SignInLoading:
+      return {
+        ...state,
+        loading: true,
+      };
+    case ActionTypes.SignInSuccess:
+      return {
+        ...state,
+        items: action.payload,
+        loading: false,
+      };
+    case ActionTypes.SignInFailure:
+      return {
+        ...state,
+        error: action.error,
+      };
+
+    case ActionTypes.SignOut:
+      return {
+        ...state,
+        items: action.value,
+      };
+
     default: return state;
   }
 };

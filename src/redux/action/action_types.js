@@ -8,6 +8,10 @@ const ActionTypes = {
   RegisterationLoading: 'RegisterationLoading',
   RegisterationSuccess: 'RegisterationSuccess',
   RegisterationFailure: 'RegisterationFailure',
+  SignInLoading: 'SignInLoading',
+  SignInSuccess: 'SignInSuccess',
+  SignInFailure: 'SignInFailure',
+  SignOut: 'SignOut',
 };
 
 export default ActionTypes;
