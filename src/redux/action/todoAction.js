@@ -7,11 +7,11 @@ const FetchData = () => async (dispatch) => {
   });
 
   try {
-    const response = await axios.get('https://secure-ocean-64470.herokuapp.com/api/v1/todos',
+    const response = await axios.get('https://boiling-shelf-13431.herokuapp.com/api/v1/todos',
       {
         headers: {
           'Content-Type': 'application/json',
-          token: 'eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxM30.d2uekGOXSDVgfqjon8T-QFHhfFGLAz3eE9nH3WpgldY',
+          token: 'eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxfQ.DiPWrOKsx3sPeVClrm_j07XNdSYHgBa3Qctosdxax3w',
         },
       });
     dispatch({
@@ -26,29 +26,40 @@ const FetchData = () => async (dispatch) => {
   }
 };
 
-const PostData = (data) => async (dispatch) => {
-  dispatch({
-    type: ActionTypes.CreateTodo,
-  });
-  console.log(data); //eslint-disable-line
+const PostData = () => async (dispatch) => {
+  dispatch({ type: ActionTypes.PostTodoLoading });
+
   try {
-    const response = await axios.post('https://secure-ocean-64470.herokuapp.com/api/v1/todos',
-      {
-        headers: {
-          'Content-Type': 'application/json',
-          token: 'eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxM30.d2uekGOXSDVgfqjon8T-QFHhfFGLAz3eE9nH3WpgldY',
-        },
-        data,
-      });
-    dispatch({
-      type: ActionTypes.PostSuccess,
-      payload: response.data,
+    const response = await axios({
+      method: 'post',
+      url: 'https://boiling-shelf-13431.herokuapp.com/api/v1/todos',
+      headers: {
+        'Content-Type': 'application/json',
+        token: 'eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxfQ.DiPWrOKsx3sPeVClrm_j07XNdSYHgBa3Qctosdxax3w',
+      },
+      data: { title: 'testpost33', created_by: 'testpost22', user_id: 1 },
     });
+    dispatch({ type: ActionTypes.POST_TODO_SUCCESS, payload: response.data });
   } catch (error) {
-    dispatch({
-      type: ActionTypes.PostFailure,
-      error,
+    dispatch({ type: ActionTypes.POST_TODO_FAILURE, error });
+  }
+};
+
+const Registeration = () => async (dispatch) => {
+  dispatch({ type: ActionTypes.RegisterationLoading });
+
+  try {
+    const response = await axios({
+      method: 'post',
+      url: 'https://boiling-shelf-13431.herokuapp.com/api/v1/registeration',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      data: { email: 'vidhishweta01@gmail.com', password: 'Shaurya123*', password_confirmation: 'Shaurya123*' }
     });
+    dispatch({ type: ActionTypes.RegisterationSuccess, payload: response.data });
+  } catch (error) {
+    dispatch({ type: ActionTypes.POST_TODO_FAILURE, error });
   }
 };
 

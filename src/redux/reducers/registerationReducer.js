@@ -1,25 +1,25 @@
 import ActionTypes from '../action/action_types';
 
-const initialStatePost = {
+const initialStateRegisteration = {
   items: [],
   loading: false,
   error: null,
 };
 
-const PostTodoReducer = (state = initialStatePost, action) => {
+const RegisterationReducer = (state = initialStateRegisteration, action) => {
   switch (action.type) {
-    case ActionTypes.POST_TODO_LOADING:
+    case ActionTypes.RegisterationLoading:
       return {
         ...state,
         loading: true,
       };
-    case ActionTypes.POST_TODO_SUCCESS:
+    case ActionTypes.RegisterationSuccess:
       return {
         ...state,
         items: action.payload,
         loading: false,
       };
-    case ActionTypes.POST_TODO_FAILURE:
+    case ActionTypes.RegisterationFailure:
       return {
         ...state,
         error: action.error,
@@ -28,4 +28,4 @@ const PostTodoReducer = (state = initialStatePost, action) => {
   }
 };
 
-export default PostTodoReducer;
+export default RegisterationReducer;

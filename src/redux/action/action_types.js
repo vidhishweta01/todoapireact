@@ -2,10 +2,12 @@ const ActionTypes = {
   FetchLoading: 'FetchLoading',
   FetchSuccess: 'FetchSuccess',
   FetchFailure: 'FetchFailure',
-  deleteTodos: 'DeleteTodos',
-  ShowTodo: 'ShowTodo',
-  CreateTodo: 'CreateTodo',
-  PostFailure: 'PostFailure',
+  PostTodoLoading: 'PostTodoLoading',
+  POST_TODO_SUCCESS: 'POST_TODO_SUCCESS',
+  POST_TODO_FAILURE: 'POST_TODO_FAILURE',
+  RegisterationLoading: 'RegisterationLoading',
+  RegisterationSuccess: 'RegisterationSuccess',
+  RegisterationFailure: 'RegisterationFailure',
 };
 
 export default ActionTypes;

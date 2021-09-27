@@ -24,7 +24,7 @@ const todosList = () => {
       const todos = state.items;
       return (todos.map((todo) => <Todo key={todo.id} todo={todo} />));
     }
-    return <h1>cannot get pokemon list try again</h1>;
+    return <h1>cannot get list try again</h1>;
   };
   return (
     <div>
