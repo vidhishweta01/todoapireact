@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { FetchData } from '../../redux/action/todoAction';
 import todoForm from '../todoForm/todoForm';
 import Todo from '../todo';
+import SignOut from '../login/signout';
 
 const todosList = () => {
   const dispatch = useDispatch();
@@ -27,6 +28,7 @@ const todosList = () => {
   };
   return (
     <div>
+      <SignOut />
       {todoForm()}
       {renderTodoList()}
     </div>

@@ -38,7 +38,7 @@ const SignIn = (data) => async (dispatch) => {
   }
 };
 
-const SignOut = () => (
+const signOut = () => (
   {
     type: ActionTypes.SignOut,
     value: null,
@@ -46,7 +46,6 @@ const SignOut = () => (
 );
 
 const FetchData = () => async (dispatch) => {
-  console.log(token); // eslint-disable-line
   dispatch({
     type: ActionTypes.FetchLoading,
   });
@@ -91,5 +90,5 @@ const PostData = (data) => async (dispatch) => {
 };
 
 export {
-  Registeration, SignIn, SignOut, FetchData, PostData,
+  Registeration, SignIn, signOut, FetchData, PostData,
 };

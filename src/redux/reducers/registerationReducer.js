@@ -42,6 +42,7 @@ const RegisterationReducer = (state = initialStateRegisteration, action) => {
       };
 
     case ActionTypes.SignOut:
+      localStorage.removeItem('token');
       return {
         ...state,
         items: action.value,

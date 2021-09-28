@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 import { Registeration, SignIn } from '../../redux/action/todoAction';
-
 import styles from './SignIn.module.css';
 
 const Signin = () => {
@@ -18,12 +17,14 @@ const Signin = () => {
   const handleChangePassword = (e) => setPassword(e.target.value);
   const handleChangePasswordConfirmation = (e) => setPasswordConfirmation(e.target.value);
   useEffect(() => {
-    const { token } = state.items;
-    if (token) {
+    if (state.items) {
+      const { token } = state.items;
       localStorage.setItem('token', token);
-      const { user_id } = jwt_decode(token);
-      localStorage.setItem('user_id', user_id);
-      history.push(`/todos/${user_id}`);
+      if (token) {
+        const { user_id } = jwt_decode(token);
+        localStorage.setItem('user_id', user_id);
+        history.push(`/todos/${user_id}`);
+      }
     }
   }, [state]);
 
