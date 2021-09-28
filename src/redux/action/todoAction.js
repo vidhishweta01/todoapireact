@@ -1,6 +1,7 @@
 import axios from 'axios';
 import ActionTypes from './action_types';
 
+const token = localStorage.getItem('token');
 const Registeration = (data) => async (dispatch) => {
   dispatch({ type: ActionTypes.RegisterationLoading });
 
@@ -11,7 +12,7 @@ const Registeration = (data) => async (dispatch) => {
       headers: {
         'Content-Type': 'application/json',
       },
-      data: { email: 'kartik19@gmail.com', password: 'Shaurya123*', password_confirmation: 'Shaurya123*' },
+      data,
     });
     dispatch({ type: ActionTypes.RegisterationSuccess, payload: response.data });
   } catch (error) {
@@ -44,7 +45,8 @@ const SignOut = () => (
   }
 );
 
-const FetchData = (token) => async (dispatch) => {
+const FetchData = () => async (dispatch) => {
+  console.log(token); // eslint-disable-line
   dispatch({
     type: ActionTypes.FetchLoading,
   });
@@ -69,7 +71,7 @@ const FetchData = (token) => async (dispatch) => {
   }
 };
 
-const PostData = (data, token) => async (dispatch) => {
+const PostData = (data) => async (dispatch) => {
   dispatch({ type: ActionTypes.PostTodoLoading });
 
   try {

@@ -1,19 +1,16 @@
 /* eslint-disable camelcase */
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { PostData } from '../../redux/action/todoAction';
-import SignIn from '../../component/login/SignIn';
 
 const todoForm = () => {
   const [title, setTitle] = useState('');
   const [created_by, setCreatedby] = useState('');
   const dispatch = useDispatch();
-  
-  const state = useSelector((state) => state.RegisterationReducer);
-  
+
   const handleChangeTitle = (e) => setTitle(e.target.value);
   const handleChangeCreatedby = (e) => setCreatedby(e.target.value);
-
+  const user_id = localStorage.getItem('user_id');
   return (
     <div>
       <h4>title</h4>
@@ -23,11 +20,7 @@ const todoForm = () => {
       <button
         type="submit"
         onClick={() => {
-          if (state.items) {
-            dispatch(PostData({ title, created_by }, state.items));
-          } else {
-            SignIn();
-          } 
+          dispatch(PostData({ title, created_by, user_id }));
         }}
       >
         + todo
