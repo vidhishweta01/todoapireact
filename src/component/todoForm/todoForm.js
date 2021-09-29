@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { PostData } from '../../redux/action/todoAction';
 
-const todoForm = () => {
+const TodoForm = () => {
   const [title, setTitle] = useState('');
   const [created_by, setCreatedby] = useState('');
   const dispatch = useDispatch();
@@ -30,4 +30,4 @@ const todoForm = () => {
   );
 };
 
-export default todoForm;
+export default TodoForm;
