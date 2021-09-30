@@ -2,31 +2,29 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { PostData } from '../../redux/action/todoAction';
+import styles from './todoForm.module.css';
 
 const TodoForm = () => {
-  const [title, setTitle] = useState('');
-  const [created_by, setCreatedby] = useState('');
   const dispatch = useDispatch();
-
-  const handleChangeTitle = (e) => setTitle(e.target.value);
-  const handleChangeCreatedby = (e) => setCreatedby(e.target.value);
+  const [title, SetTitle] = useState('');
+  const [created_by, SetcreatedBy] = useState('');
   const user_id = localStorage.getItem('user_id');
   return (
-    <div>
-      <h4>title</h4>
-      <input type="text" onChange={(e) => handleChangeTitle(e)} value={title} placeholder="todo" />
-      <h4>Created By</h4>
-      <input type="text" onChange={(e) => handleChangeCreatedby(e)} value={created_by} placeholder="created by" />
-      <button
-        type="submit"
-        onClick={() => {
+    <div className={styles.wrapper}>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
           dispatch(PostData({ title, created_by, user_id }));
+          SetTitle('');
+          SetcreatedBy('');
         }}
+        className={styles.form}
       >
-        + todo
-      </button>
+        <input className={styles.input} type="text" placeholder="Todo Title" value={title} onChange={(e) => SetTitle(e.target.value)} />
+        <input className={styles.input} type="text" placeholder="Created by" value={created_by} onChange={(e) => SetcreatedBy(e.target.value)} />
+        <button className={styles.button} type="submit">Submit</button>
+      </form>
     </div>
-
   );
 };
 

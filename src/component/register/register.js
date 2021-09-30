@@ -17,6 +17,7 @@ const Register = () => {
   const handleChangePassword = (e) => setPassword(e.target.value);
   const handleChangePasswordConfirmation = (e) => setPasswordConfirmation(e.target.value);
   useEffect(() => {
+    localStorage.removeItem('token');
     if (state.items) {
       const { token } = state.items;
       localStorage.setItem('token', token);
@@ -36,16 +37,13 @@ const Register = () => {
   return (
     <div id="register" className={styles.register}>
       <div className={styles.input}>
-        <h4 className={`${styles.h4} ${styles.h42}`}>email</h4>
-        <input type="email" onChange={(e) => handleChangeEmail(e)} value={email} placeholder="example@gmail.com" className={styles.inpt} />
+        <input type="email" onChange={(e) => handleChangeEmail(e)} value={email} placeholder="EMAIL" className={styles.inpt} />
       </div>
       <div className={styles.input}>
-        <h4 className={`${styles.h4} ${styles.h43}`}>password</h4>
-        <input type="password" onChange={(e) => handleChangePassword(e)} value={password} className={styles.inpt} />
+        <input type="password" onChange={(e) => handleChangePassword(e)} value={password} placeholder="PASSWORD" className={styles.inpt} />
       </div>
       <div className={styles.input}>
-        <h4 className={styles.h4}>confirm psw</h4>
-        <input type="password" onChange={(e) => handleChangePasswordConfirmation(e)} value={password_confirmation} className={styles.inpt} />
+        <input type="password" onChange={(e) => handleChangePasswordConfirmation(e)} value={password_confirmation} placeholder="CONFIRM PASSWORD" className={styles.inpt} />
       </div>
       <div className={styles.button}>
         <button

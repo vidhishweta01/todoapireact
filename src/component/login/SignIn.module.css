@@ -22,8 +22,6 @@ body {
 }
 
 .input {
-  display: flex;
-  justify-content: center;
   margin: 1vh;
 }
 
@@ -45,12 +43,12 @@ body {
 }
 
 .btn {
-  padding-top: 1vh;
-  padding-bottom: 1vh;
-  padding-left: 2vw;
-  padding-right: 2vw;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 1vw;
+  padding-right: 1vw;
   color: cornsilk;
-  background-color: coral;
+  background-color: rgb(236, 13, 13);
   border-color: transparent;
   border-radius: 8px;
   font-weight: bold;
@@ -58,9 +56,13 @@ body {
 }
 
 .inpt {
-  padding: 5px;
+  padding: 1vh;
   border-radius: 20px;
   box-shadow: 4px 8px 6px rgb(196, 191, 191);
-  border-color: transparent;
+  border: none;
   background-color: white;
+  z-index: 10;
+  opacity: 1;
+  outline: none;
+  font-weight: bold;
 }

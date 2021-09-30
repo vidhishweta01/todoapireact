@@ -1,0 +1,10 @@
+.button {
+  padding-left: 2vw;
+  padding-right: 2vw;
+  padding-bottom: 1vw;
+  padding-top: 1vw;
+  background-color: rgb(27, 27, 27);
+  font-size: medium;
+  color: white;
+  border: none;
+}

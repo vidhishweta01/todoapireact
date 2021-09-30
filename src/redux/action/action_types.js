@@ -12,6 +12,12 @@ const ActionTypes = {
   SignInSuccess: 'SignInSuccess',
   SignInFailure: 'SignInFailure',
   SignOut: 'SignOut',
+  DeleteTodoLoading: 'DeleteTodoLoading',
+  DeleteTodoSuccess: 'DeleteTodoSuccess',
+  DeleteTodoFailure: 'DeleteTodoFailure',
+  UpdateTodoLoading: 'UpdateTodoLoading',
+  UpdateTodoSuccess: 'UpdateTodoSuccess',
+  UpdateTodoFailure: 'UpdateTodoFailure',
 };
 
 export default ActionTypes;

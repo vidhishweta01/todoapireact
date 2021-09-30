@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { signOut } from '../../redux/action/todoAction';
-import styles from './signout.module.css';
+import styles from './signOut.module.css';
 
 const SignOut = () => {
   const dispatch = useDispatch();
@@ -14,9 +14,7 @@ const SignOut = () => {
   };
 
   return (
-    <div className={styles.signOut}>
-      <button type="submit" onClick={() => signOutUser()}>Sign Out</button>
-    </div>
+    <button className={styles.button} type="submit" onClick={() => signOutUser()}>SIGN OUT</button>
   );
 };
 

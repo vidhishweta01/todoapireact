@@ -1,7 +1,7 @@
 import ActionTypes from '../action/action_types';
 
 const initialStateRegisteration = {
-  items: [],
+  items: null,
   loading: false,
   error: null,
 };

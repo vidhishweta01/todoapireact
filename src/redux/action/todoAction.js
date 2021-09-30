@@ -89,6 +89,43 @@ const PostData = (data) => async (dispatch) => {
   }
 };
 
+export const UpdateTodo = (id, obj) => async (dispatch) => {
+  dispatch({ type: ActionTypes.UpdateTodoLoading });
+
+  try {
+    const response = await axios({
+      method: 'patch',
+      url: `https://vast-eyrie-23535.herokuapp.com/api/v1/todos/${id}`,
+      headers: {
+        'Content-Type': 'application/json',
+        token,
+      },
+      data: obj,
+    });
+    dispatch({ type: ActionTypes.UpdateTodoSuccess, payload: response.data });
+  } catch (error) {
+    dispatch({ type: ActionTypes.UpdateTodoFailure, error });
+  }
+};
+
+export const DeleteTodo = (id) => async (dispatch) => {
+  dispatch({ type: ActionTypes.DeleteTodoLoading });
+
+  try {
+    const response = await axios({
+      method: 'delete',
+      url: `https://vast-eyrie-23535.herokuapp.com/api/v1/todos/${id}`,
+      headers: {
+        'Content-Type': 'application/json',
+        token,
+      },
+    });
+    dispatch({ type: ActionTypes.DeleteTodoSuccess, payload: response.data });
+  } catch (error) {
+    dispatch({ type: ActionTypes.DeleteTodoFailure, error });
+  }
+};
+
 export {
   Registeration, SignIn, signOut, FetchData, PostData,
 };

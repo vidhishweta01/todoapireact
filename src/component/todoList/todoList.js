@@ -2,18 +2,19 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { FetchData } from '../../redux/action/todoAction';
-import TodoForm from '../todoForm/todoForm';
 import Todo from '../todo';
-import SignOut from '../login/signout';
+import TodoForm from '../todoForm/todoForm';
 
 const todosList = () => {
   const dispatch = useDispatch();
   const state = useSelector((state) => state);
-  const { RegisterationReducer, todoReducer, PostTodoReducer } = state;
+  const {
+    RegisterationReducer, todoReducer, PostTodoReducer, DeleteTodoReducer,
+  } = state;
 
   useEffect(() => {
     dispatch(FetchData());
-  }, [RegisterationReducer, PostTodoReducer]);
+  }, [RegisterationReducer, PostTodoReducer, DeleteTodoReducer]);
 
   const renderTodoList = () => {
     if (state.loading) {
@@ -28,9 +29,8 @@ const todosList = () => {
   };
   return (
     <div>
-      {renderTodoList()}
       <TodoForm />
-      <SignOut />
+      {renderTodoList()}
     </div>
   );
 };
