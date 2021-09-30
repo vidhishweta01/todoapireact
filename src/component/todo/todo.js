@@ -1,13 +1,11 @@
 /* eslint-disable camelcase */
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
 import propTypes from 'prop-types';
 import { UpdateTodo, DeleteTodo } from '../../redux/action/todoAction';
 import styles from './todo.module.css';
 
 const Todo = ({ todo }) => {
-  const history = useHistory();
   const dispatch = useDispatch();
   const { id, title, created_by } = todo;
   const [Title, setTitle] = useState(title);
