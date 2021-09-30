@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { PostItems } from '../../Redux/Actions/TodoActions';
-import styles from './itemform.module.css';
+import { PostItems } from '../../redux/action/todoAction';
+import styles from './itemForm.module.css';
 
 const ItemForm = () => {
   const res = useParams();
+  console.log(res); // eslint-disable-line
   const dispatch = useDispatch();
   const [name, SetName] = useState('');
   const [description, SetDescription] = useState('');

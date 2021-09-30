@@ -2,8 +2,8 @@ import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { DeleteItem, UpdateItem } from '../../Redux/Actions/TodoActions';
-import styles from './item.module.css';
+import { DeleteItem, UpdateItem } from '../../redux/action/todoAction';
+import styles from './Item.module.css';
 
 const Item = ({ item }) => {
   const res = useParams();

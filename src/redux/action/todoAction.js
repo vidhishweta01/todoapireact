@@ -200,7 +200,6 @@ export const DeleteItem = (todoId, itemId) => async (dispatch) => {
   }
 };
 
-
 export {
   Registeration, SignIn, signOut, FetchData, PostData, UpdateTodo, DeleteTodo, GetItems,
 };

@@ -1,33 +1,53 @@
-import React, { useEffect } from 'react';
+/* eslint-disable no-console */
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { GetItems } from '../../redux/action/todoAction';
+import { useParams, useHistory } from 'react-router-dom';
 import Item from '../Items';
+import { GetItems } from '../../redux/action/todoAction';
 import ItemForm from '../ItemForm/itemForm';
+import styles from './itemlist.module.css';
 
 const ItemList = () => {
+  const history = useHistory();
+  console.log(history);
+  const res = useParams();
   const dispatch = useDispatch();
-  const state = useSelector((state) => state.GetItemsReducer);
+  const state = useSelector((state) => state);
+  const { DeleteItemsReducer, UpdateItemsReducer, PostItemsReducer } = state;
 
   useEffect(() => {
-    dispatch(GetItems());
-  }, []);
+    dispatch(GetItems(res.id));
+  }, [DeleteItemsReducer, UpdateItemsReducer, PostItemsReducer]);
 
-  const renderItemList = () => {
-    if (state.loading) {
-      return <h1>loading...</h1>;
+  const renderData = () => {
+    const { GetItemsReducer } = state;
+    const { loading, items, error } = GetItemsReducer;
+    const ItemsLen = items.length;
+    const { error: deleteError } = DeleteItemsReducer;
+    const { error: postError } = PostItemsReducer;
+
+    if (loading) {
+      return 'Loading data .............';
+    }
+    if (ItemsLen > 0) {
+      return items.map((el) => <Item key={el.id} item={el} />);
+    }
+    if (deleteError) {
+      return `${deleteError}`;
+    }
+    if (postError) {
+      return `${postError}`;
     }
 
-    if (state.items.length > 0) {
-      const Items = todoReducer.items;
-      return (Items.map((item) => <Item key={item.id} item={item} />));
-    }
-    return <h1>cannot get list try again</h1>;
+    return error;
   };
+
   return (
-    <div>
+    <main className={styles.main}>
+      {/* <button type="button" onClick={() => history.goBack()}>GoBack</button> */}
       <ItemForm />
-      {renderItemList()}
-    </div>
+      {renderData()}
+    </main>
   );
 };
 
