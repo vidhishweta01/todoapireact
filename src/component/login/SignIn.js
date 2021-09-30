@@ -7,7 +7,7 @@ import { authenticateUser } from '../../helper/helper';
 import styles from './SignIn.module.css';
 
 const Signin = () => {
-  localStorage.removeItem('token');
+  localStorage.clear();
   const history = useHistory();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

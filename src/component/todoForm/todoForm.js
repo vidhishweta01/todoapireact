@@ -1,11 +1,13 @@
 /* eslint-disable camelcase */
+/* eslint-disable no-console */
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { PostData } from '../../redux/action/todoAction';
 import styles from './todoForm.module.css';
 
-const TodoForm = () => {
+const TodoForm = ({ token }) => {  //eslint-disable-line
+  console.log(token);
   const { id } = useParams();
   const user_id = id;
   const dispatch = useDispatch();
@@ -16,7 +18,7 @@ const TodoForm = () => {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          dispatch(PostData({ title, created_by, user_id }));
+          dispatch(PostData({ title, created_by, user_id }, token));
           SetTitle('');
           SetcreatedBy('');
         }}

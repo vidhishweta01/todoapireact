@@ -7,7 +7,7 @@ import { SignIn } from '../../redux/action/todoAction';
 import styles from './register.module.css';
 
 const Register = () => {
-  localStorage.removeItem('token');
+  localStorage.clear();
   const history = useHistory();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

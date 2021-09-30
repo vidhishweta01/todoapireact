@@ -11,9 +11,10 @@ const todosList = () => {
   const {
     RegisterationReducer, todoReducer, PostTodoReducer, DeleteTodoReducer,
   } = state;
+  const { token } = RegisterationReducer.items;
 
   useEffect(() => {
-    dispatch(FetchData());
+    dispatch(FetchData(token));
   }, [RegisterationReducer, PostTodoReducer, DeleteTodoReducer]);
 
   const renderTodoList = () => {
@@ -29,7 +30,7 @@ const todosList = () => {
   };
   return (
     <div>
-      <TodoForm />
+      <TodoForm token={token} />
       {renderTodoList()}
     </div>
   );

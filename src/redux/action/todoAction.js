@@ -1,7 +1,7 @@
 import axios from 'axios';
 import ActionTypes from './action_types';
 
-const token = localStorage.getItem('token');
+let token = localStorage.getItem('token');
 const Registeration = (data) => async (dispatch) => {
   dispatch({ type: ActionTypes.RegisterationLoading });
 
@@ -45,7 +45,8 @@ const signOut = () => (
   }
 );
 
-const FetchData = () => async (dispatch) => {
+const FetchData = (toke) => async (dispatch) => {
+  token = toke;
   dispatch({
     type: ActionTypes.FetchLoading,
   });
@@ -55,7 +56,7 @@ const FetchData = () => async (dispatch) => {
       {
         headers: {
           'Content-Type': 'application/json',
-          token,
+          token: toke,
         },
       });
     dispatch({
@@ -70,7 +71,8 @@ const FetchData = () => async (dispatch) => {
   }
 };
 
-const PostData = (data) => async (dispatch) => {
+const PostData = (data, toke) => async (dispatch) => {
+  token = toke;
   dispatch({ type: ActionTypes.PostTodoLoading });
 
   try {
@@ -79,7 +81,7 @@ const PostData = (data) => async (dispatch) => {
       url: 'https://vast-eyrie-23535.herokuapp.com/api/v1/todos',
       headers: {
         'Content-Type': 'application/json',
-        token,
+        token: toke,
       },
       data,
     });
