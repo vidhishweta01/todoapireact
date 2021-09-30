@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/todoapireact/static/css/main.940370cb.chunk.css",
+    "main.js": "/todoapireact/static/js/main.e981ba72.chunk.js",
+    "main.js.map": "/todoapireact/static/js/main.e981ba72.chunk.js.map",
+    "runtime-main.js": "/todoapireact/static/js/runtime-main.e167baa1.js",
+    "runtime-main.js.map": "/todoapireact/static/js/runtime-main.e167baa1.js.map",
+    "static/js/2.3028b79a.chunk.js": "/todoapireact/static/js/2.3028b79a.chunk.js",
+    "static/js/2.3028b79a.chunk.js.map": "/todoapireact/static/js/2.3028b79a.chunk.js.map",
+    "static/js/3.fa4e6722.chunk.js": "/todoapireact/static/js/3.fa4e6722.chunk.js",
+    "static/js/3.fa4e6722.chunk.js.map": "/todoapireact/static/js/3.fa4e6722.chunk.js.map",
+    "index.html": "/todoapireact/index.html",
+    "static/css/main.940370cb.chunk.css.map": "/todoapireact/static/css/main.940370cb.chunk.css.map",
+    "static/js/2.3028b79a.chunk.js.LICENSE.txt": "/todoapireact/static/js/2.3028b79a.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/todoapireact/static/media/backgrd.0479892c.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.e167baa1.js",
+    "static/js/2.3028b79a.chunk.js",
+    "static/css/main.940370cb.chunk.css",
+    "static/js/main.e981ba72.chunk.js"
+  ]
+}
