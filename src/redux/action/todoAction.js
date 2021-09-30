@@ -1,7 +1,7 @@
 import axios from 'axios';
 import ActionTypes from './action_types';
 
-const token = localStorage.getItem('token');
+const usertoken = localStorage.getItem('token');
 const Registeration = (data) => async (dispatch) => {
   dispatch({ type: ActionTypes.RegisterationLoading });
 
@@ -55,7 +55,7 @@ const FetchData = () => async (dispatch) => {
       {
         headers: {
           'Content-Type': 'application/json',
-          token,
+          token: usertoken,
         },
       });
     dispatch({
@@ -79,7 +79,7 @@ const PostData = (data) => async (dispatch) => {
       url: 'https://vast-eyrie-23535.herokuapp.com/api/v1/todos',
       headers: {
         'Content-Type': 'application/json',
-        token,
+        token: usertoken,
       },
       data,
     });
@@ -95,10 +95,10 @@ const UpdateTodo = (id, obj) => async (dispatch) => {
   try {
     const response = await axios({
       method: 'patch',
-      url: `https://vast-eyrie-23535.herokuapp.com/api/v1/todos/${id}`,
+      url: `https://vast-eyrie-23535.herokuapp.com/v1/todos/${id}`,
       headers: {
         'Content-Type': 'application/json',
-        token,
+        token: usertoken,
       },
       data: obj,
     });
@@ -117,7 +117,7 @@ const DeleteTodo = (id) => async (dispatch) => {
       url: `https://vast-eyrie-23535.herokuapp.com/api/v1/todos/${id}`,
       headers: {
         'Content-Type': 'application/json',
-        token,
+        token: usertoken,
       },
     });
     dispatch({ type: ActionTypes.DeleteTodoSuccess, payload: response.data });
@@ -126,80 +126,80 @@ const DeleteTodo = (id) => async (dispatch) => {
   }
 };
 
-const GetItems = (id) => async (dispatch) => {
-  dispatch({ type: ActionTypes.GetItemsLoading });
+// const GetItems = (id) => async (dispatch) => {
+//   dispatch({ type: ActionTypes.GetItemsLoading });
 
-  try {
-    const response = await axios({
-      method: 'get',
-      url: `https://vast-eyrie-23535.herokuapp.com/api/v1/todos/${id}/items`,
-      headers: {
-        'Content-Type': 'application/json',
-        token,
-      },
-    });
-    dispatch({ type: ActionTypes.GetItemsSuccess, payload: response.data });
-  } catch (error) {
-    dispatch({ type: ActionTypes.GetItemsFailure, error });
-  }
-};
+//   try {
+//     const response = await axios({
+//       method: 'get',
+//       url: `https://secure-ocean-64470.herokuapp.com/api/v1/todos/${id}/items`,
+//       headers: {
+//         'Content-Type': 'application/json',
+//         token,
+//       },
+//     });
+//     dispatch({ type: ActionTypes.GetItemsSuccess, payload: response.data });
+//   } catch (error) {
+//     dispatch({ type: ActionTypes.GetItemsFailure, error });
+//   }
+// };
 
-export const PostItems = (id, obj) => async (dispatch) => {
-  dispatch({ type: ActionTypes.POST_ITEMS_LOADING });
+// export const PostItems = (id, obj) => async (dispatch) => {
+//   dispatch({ type: ActionTypes.POST_ITEMS_LOADING });
 
-  try {
-    const response = await axios({
-      method: 'post',
-      url: `https://vast-eyrie-23535.herokuapp.com/api/v1/todos/${id}/items`,
-      headers: {
-        'Content-Type': 'application/json',
-        token,
-      },
-      data: obj,
-    });
-    dispatch({ type: ActionTypes.POST_ITEMS_SUCCESS, payload: response.data });
-  } catch (error) {
-    dispatch({ type: ActionTypes.POST_ITEMS_FAILURE, error });
-  }
-};
+//   try {
+//     const response = await axios({
+//       method: 'post',
+//       url: `https://vast-eyrie-23535.herokuapp.com/api/v1/todos/${id}/items`,
+//       headers: {
+//         'Content-Type': 'application/json',
+//         token,
+//       },
+//       data: obj,
+//     });
+//     dispatch({ type: ActionTypes.POST_ITEMS_SUCCESS, payload: response.data });
+//   } catch (error) {
+//     dispatch({ type: ActionTypes.POST_ITEMS_FAILURE, error });
+//   }
+// };
 
-export const UpdateItem = (todoId, itemId, obj) => async (dispatch) => {
-  dispatch({ type: ActionTypes.UPDATE_ITEMS_LOADING });
+// export const UpdateItem = (todoId, itemId, obj) => async (dispatch) => {
+//   dispatch({ type: ActionTypes.UPDATE_ITEMS_LOADING });
 
-  try {
-    const response = await axios({
-      method: 'put',
-      url: `https://vast-eyrie-23535.herokuapp.com/api/v1/todos/${todoId}/items/${itemId}`,
-      headers: {
-        'Content-Type': 'application/json',
-        token,
-      },
-      data: obj,
-    });
-    dispatch({ type: ActionTypes.UPDATE_ITEMS_SUCCESS, payload: response.data });
-  } catch (error) {
-    dispatch({ type: ActionTypes.UPDATE_ITEMS_FAILURE, error });
-  }
-};
+//   try {
+//     const response = await axios({
+//       method: 'put',
+//       url: `https://vast-eyrie-23535.herokuapp.com/api/v1/todos/${todoId}/items/${itemId}`,
+//       headers: {
+//         'Content-Type': 'application/json',
+//         token,
+//       },
+//       data: obj,
+//     });
+//     dispatch({ type: ActionTypes.UPDATE_ITEMS_SUCCESS, payload: response.data });
+//   } catch (error) {
+//     dispatch({ type: ActionTypes.UPDATE_ITEMS_FAILURE, error });
+//   }
+// };
 
-export const DeleteItem = (todoId, itemId) => async (dispatch) => {
-  dispatch({ type: ActionTypes.DELETE_ITEMS_LOADING });
+// export const DeleteItem = (todoId, itemId) => async (dispatch) => {
+//   dispatch({ type: ActionTypes.DELETE_ITEMS_LOADING });
 
-  try {
-    const response = await axios({
-      method: 'delete',
-      url: `https://vast-eyrie-23535.herokuapp.com/api/v1/todos/${todoId}/items/${itemId}`,
-      headers: {
-        'Content-Type': 'application/json',
-        token,
-      },
-    });
-    dispatch({ type: ActionTypes.DELETE_ITEMS_SUCCESS, payload: response.data });
-  } catch (error) {
-    dispatch({ type: ActionTypes.DELETE_ITEMS_FAILURE, error });
-  }
-};
+//   try {
+//     const response = await axios({
+//       method: 'delete',
+//       url: `https://vast-eyrie-23535.herokuapp.com/api/v1/todos/${todoId}/items/${itemId}`,
+//       headers: {
+//         'Content-Type': 'application/json',
+//         token,
+//       },
+//     });
+//     dispatch({ type: ActionTypes.DELETE_ITEMS_SUCCESS, payload: response.data });
+//   } catch (error) {
+//     dispatch({ type: ActionTypes.DELETE_ITEMS_FAILURE, error });
+//   }
+// };
 
 export {
-  Registeration, SignIn, signOut, FetchData, PostData, UpdateTodo, DeleteTodo, GetItems,
+  Registeration, SignIn, signOut, FetchData, PostData, UpdateTodo, DeleteTodo,
 };
