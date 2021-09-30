@@ -1,13 +1,13 @@
 /* eslint-disable camelcase */
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-// import { useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import propTypes from 'prop-types';
 import { UpdateTodo, DeleteTodo } from '../../redux/action/todoAction';
 import styles from './todo.module.css';
 
 const Todo = ({ todo }) => {
-  // const history = useHistory();
+  const history = useHistory();
   const dispatch = useDispatch();
   const { id, title, created_by } = todo;
   const [Title, setTitle] = useState(title);
@@ -30,7 +30,7 @@ const Todo = ({ todo }) => {
         />
       </div>
       <div className={styles.buttons}>
-        <button type="button">View</button>
+        <button type="button" onClick={() => history.push(`todo/${id}/items`)}>View</button>
         <button type="button" onClick={() => EditItems()}>Edit</button>
         <button type="button" onClick={() => dispatch(DeleteTodo(id))}>Delete</button>
         <button

@@ -7,6 +7,7 @@ import { SignIn } from '../../redux/action/todoAction';
 import styles from './SignIn.module.css';
 
 const Signin = () => {
+  localStorage.removeItem('token');
   const history = useHistory();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -16,7 +17,6 @@ const Signin = () => {
   const handleChangePassword = (e) => setPassword(e.target.value);
 
   useEffect(() => {
-    localStorage.removeItem('token');
     if (state.items) {
       const { token } = state.items;
       localStorage.setItem('token', token);

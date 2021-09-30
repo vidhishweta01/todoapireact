@@ -14,6 +14,7 @@ function App() {
         <Route path="/" component={Signin} exact />
         <Route path="/register" component={Register} />
         <Route path="/todos/:id" component={todosList} />
+        <Route path="/todo/:id/items" exact component={Items} />
       </Switch>
     </div>
   );

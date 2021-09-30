@@ -18,6 +18,18 @@ const ActionTypes = {
   UpdateTodoLoading: 'UpdateTodoLoading',
   UpdateTodoSuccess: 'UpdateTodoSuccess',
   UpdateTodoFailure: 'UpdateTodoFailure',
+  GetItemsLoading: 'GetItemsLoading',
+  GetItemsSuccess: 'GetItemsSuccess',
+  GetItemsFailure: 'GetItemsFailure',
+  POST_ITEMS_LOADING: 'POST_ITEMS_LOADING',
+  POST_ITEMS_SUCCESS: 'POST_ITEMS_SUCCESS',
+  POST_ITEMS_FAILURE: 'POST_ITEMS_FAILURE',
+  UPDATE_ITEMS_LOADING: 'UPDATE_ITEMS_LOADING',
+  UPDATE_ITEMS_SUCCESS: 'UPDATE_ITEMS_SUCCESS',
+  UPDATE_ITEMS_FAILURE: 'UPDATE_ITEMS_FAILURE',
+  DELETE_ITEMS_LOADING: 'DELETE_ITEMS_LOADING',
+  DELETE_ITEMS_SUCCESS: 'DELETE_ITEMS_SUCCESS',
+  DELETE_ITEMS_FAILURE: 'DELETE_ITEMS_FAILURE',
 };
 
 export default ActionTypes;

@@ -7,6 +7,7 @@ import { Registeration } from '../../redux/action/todoAction';
 import styles from './register.module.css';
 
 const Register = () => {
+  localStorage.removeItem('token');
   const history = useHistory();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -17,7 +18,6 @@ const Register = () => {
   const handleChangePassword = (e) => setPassword(e.target.value);
   const handleChangePasswordConfirmation = (e) => setPasswordConfirmation(e.target.value);
   useEffect(() => {
-    localStorage.removeItem('token');
     if (state.items) {
       const { token } = state.items;
       localStorage.setItem('token', token);

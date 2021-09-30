@@ -1,7 +1,6 @@
 .navbar {
   background-color: black;
   height: 4vw;
-  display: none;
 }
 
 .button {
@@ -10,6 +9,7 @@
   padding-bottom: 1vw;
   padding-top: 1vw;
   text-decoration: none;
-  background-color: rgb(27, 27, 27);
+  background-color: black;
   color: white;
+  float: left;
 }
