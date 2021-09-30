@@ -71,8 +71,7 @@ const FetchData = (toke) => async (dispatch) => {
   }
 };
 
-const PostData = (data, toke) => async (dispatch) => {
-  token = toke;
+const PostData = (data) => async (dispatch) => {
   dispatch({ type: ActionTypes.PostTodoLoading });
 
   try {
@@ -81,7 +80,7 @@ const PostData = (data, toke) => async (dispatch) => {
       url: 'https://vast-eyrie-23535.herokuapp.com/api/v1/todos',
       headers: {
         'Content-Type': 'application/json',
-        token: toke,
+        token,
       },
       data,
     });

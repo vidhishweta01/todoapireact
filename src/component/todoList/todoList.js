@@ -1,20 +1,26 @@
 /* eslint-disable camelcase */
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { FetchData } from '../../redux/action/todoAction';
 import Todo from '../todo';
 import TodoForm from '../todoForm/todoForm';
 
 const todosList = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const state = useSelector((state) => state);
   const {
     RegisterationReducer, todoReducer, PostTodoReducer, DeleteTodoReducer,
   } = state;
-  const { token } = RegisterationReducer.items;
 
   useEffect(() => {
-    dispatch(FetchData(token));
+    if (RegisterationReducer.items) {
+      const { token } = RegisterationReducer.items;
+      dispatch(FetchData(token));
+    } else {
+      history.push('/');
+    }
   }, [RegisterationReducer, PostTodoReducer, DeleteTodoReducer]);
 
   const renderTodoList = () => {
@@ -30,7 +36,7 @@ const todosList = () => {
   };
   return (
     <div>
-      <TodoForm token={token} />
+      <TodoForm />
       {renderTodoList()}
     </div>
   );

@@ -6,8 +6,7 @@ import { useParams } from 'react-router-dom';
 import { PostData } from '../../redux/action/todoAction';
 import styles from './todoForm.module.css';
 
-const TodoForm = ({ token }) => {  //eslint-disable-line
-  console.log(token);
+const TodoForm = () => {  //eslint-disable-line
   const { id } = useParams();
   const user_id = id;
   const dispatch = useDispatch();
@@ -18,7 +17,7 @@ const TodoForm = ({ token }) => {  //eslint-disable-line
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          dispatch(PostData({ title, created_by, user_id }, token));
+          dispatch(PostData({ title, created_by, user_id }));
           SetTitle('');
           SetcreatedBy('');
         }}
