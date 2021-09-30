@@ -23,6 +23,7 @@ const RegisterationReducer = (state = initialStateRegisteration, action) => {
       return {
         ...state,
         error: action.error,
+        loading: false,
       };
     case ActionTypes.SignInLoading:
       return {

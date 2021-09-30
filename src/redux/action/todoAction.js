@@ -1,7 +1,7 @@
 import axios from 'axios';
 import ActionTypes from './action_types';
 
-const usertoken = localStorage.getItem('token');
+const token = localStorage.getItem('token');
 const Registeration = (data) => async (dispatch) => {
   dispatch({ type: ActionTypes.RegisterationLoading });
 
@@ -16,12 +16,12 @@ const Registeration = (data) => async (dispatch) => {
     });
     dispatch({ type: ActionTypes.RegisterationSuccess, payload: response.data });
   } catch (error) {
-    dispatch({ type: ActionTypes.POST_TODO_FAILURE, error });
+    dispatch({ type: ActionTypes.RegisterationFailure, error: error.response.data.error });
   }
 };
 
 const SignIn = (data) => async (dispatch) => {
-  dispatch({ type: ActionTypes.RegisterationLoading });
+  dispatch({ type: ActionTypes.SignInLoading });
 
   try {
     const response = await axios({
@@ -32,9 +32,9 @@ const SignIn = (data) => async (dispatch) => {
       },
       data,
     });
-    dispatch({ type: ActionTypes.RegisterationSuccess, payload: response.data });
+    dispatch({ type: ActionTypes.SignInSuccess, payload: response.data });
   } catch (error) {
-    dispatch({ type: ActionTypes.POST_TODO_FAILURE, error });
+    dispatch({ type: ActionTypes.SignInFailure, error: error.response.data.error });
   }
 };
 
@@ -49,13 +49,13 @@ const FetchData = () => async (dispatch) => {
   dispatch({
     type: ActionTypes.FetchLoading,
   });
-
+  console.log(token); // eslint-disable-line
   try {
     const response = await axios.get('https://vast-eyrie-23535.herokuapp.com/api/v1/todos',
       {
         headers: {
           'Content-Type': 'application/json',
-          token: usertoken,
+          token,
         },
       });
     dispatch({
@@ -79,7 +79,7 @@ const PostData = (data) => async (dispatch) => {
       url: 'https://vast-eyrie-23535.herokuapp.com/api/v1/todos',
       headers: {
         'Content-Type': 'application/json',
-        token: usertoken,
+        token,
       },
       data,
     });
@@ -98,7 +98,7 @@ const UpdateTodo = (id, obj) => async (dispatch) => {
       url: `https://vast-eyrie-23535.herokuapp.com/v1/todos/${id}`,
       headers: {
         'Content-Type': 'application/json',
-        token: usertoken,
+        token,
       },
       data: obj,
     });
@@ -117,7 +117,7 @@ const DeleteTodo = (id) => async (dispatch) => {
       url: `https://vast-eyrie-23535.herokuapp.com/api/v1/todos/${id}`,
       headers: {
         'Content-Type': 'application/json',
-        token: usertoken,
+        token,
       },
     });
     dispatch({ type: ActionTypes.DeleteTodoSuccess, payload: response.data });
@@ -125,80 +125,6 @@ const DeleteTodo = (id) => async (dispatch) => {
     dispatch({ type: ActionTypes.DeleteTodoFailure, error });
   }
 };
-
-// const GetItems = (id) => async (dispatch) => {
-//   dispatch({ type: ActionTypes.GetItemsLoading });
-
-//   try {
-//     const response = await axios({
-//       method: 'get',
-//       url: `https://secure-ocean-64470.herokuapp.com/api/v1/todos/${id}/items`,
-//       headers: {
-//         'Content-Type': 'application/json',
-//         token,
-//       },
-//     });
-//     dispatch({ type: ActionTypes.GetItemsSuccess, payload: response.data });
-//   } catch (error) {
-//     dispatch({ type: ActionTypes.GetItemsFailure, error });
-//   }
-// };
-
-// export const PostItems = (id, obj) => async (dispatch) => {
-//   dispatch({ type: ActionTypes.POST_ITEMS_LOADING });
-
-//   try {
-//     const response = await axios({
-//       method: 'post',
-//       url: `https://vast-eyrie-23535.herokuapp.com/api/v1/todos/${id}/items`,
-//       headers: {
-//         'Content-Type': 'application/json',
-//         token,
-//       },
-//       data: obj,
-//     });
-//     dispatch({ type: ActionTypes.POST_ITEMS_SUCCESS, payload: response.data });
-//   } catch (error) {
-//     dispatch({ type: ActionTypes.POST_ITEMS_FAILURE, error });
-//   }
-// };
-
-// export const UpdateItem = (todoId, itemId, obj) => async (dispatch) => {
-//   dispatch({ type: ActionTypes.UPDATE_ITEMS_LOADING });
-
-//   try {
-//     const response = await axios({
-//       method: 'put',
-//       url: `https://vast-eyrie-23535.herokuapp.com/api/v1/todos/${todoId}/items/${itemId}`,
-//       headers: {
-//         'Content-Type': 'application/json',
-//         token,
-//       },
-//       data: obj,
-//     });
-//     dispatch({ type: ActionTypes.UPDATE_ITEMS_SUCCESS, payload: response.data });
-//   } catch (error) {
-//     dispatch({ type: ActionTypes.UPDATE_ITEMS_FAILURE, error });
-//   }
-// };
-
-// export const DeleteItem = (todoId, itemId) => async (dispatch) => {
-//   dispatch({ type: ActionTypes.DELETE_ITEMS_LOADING });
-
-//   try {
-//     const response = await axios({
-//       method: 'delete',
-//       url: `https://vast-eyrie-23535.herokuapp.com/api/v1/todos/${todoId}/items/${itemId}`,
-//       headers: {
-//         'Content-Type': 'application/json',
-//         token,
-//       },
-//     });
-//     dispatch({ type: ActionTypes.DELETE_ITEMS_SUCCESS, payload: response.data });
-//   } catch (error) {
-//     dispatch({ type: ActionTypes.DELETE_ITEMS_FAILURE, error });
-//   }
-// };
 
 export {
   Registeration, SignIn, signOut, FetchData, PostData, UpdateTodo, DeleteTodo,

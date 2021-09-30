@@ -1,4 +1,4 @@
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import React from 'react';
 import Signin from './component/login';
 import Register from './component/register';
@@ -13,7 +13,8 @@ function App() {
       <Switch>
         <Route path="/" component={Signin} exact />
         <Route path="/register" component={Register} />
-        <Route path="/todos/:id" component={todosList} />
+        <Route path="/user/:id/todos/" component={todosList} />
+        <Redirect to="/" />
       </Switch>
     </div>
   );

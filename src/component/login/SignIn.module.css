@@ -66,3 +66,22 @@ body {
   outline: none;
   font-weight: bold;
 }
+
+.errorsConatiner {
+  color: #721c24;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+  line-height: 3rem;
+  opacity: 0.8;
+}
+
+.errorBtn {
+  width: fit-content;
+  float: right;
+  border: none;
+  background-color: transparent;
+  font-size: 16px;
+  font-weight: bold;
+  color: #721c24;
+  cursor: pointer;
+}

@@ -1,9 +1,9 @@
 /* eslint-disable camelcase */
-import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import jwt_decode from 'jwt-decode';
-import { Registeration } from '../../redux/action/todoAction';
+import { authenticateUser } from '../../helper/helper';
+import { SignIn } from '../../redux/action/todoAction';
 import styles from './register.module.css';
 
 const Register = () => {
@@ -13,21 +13,36 @@ const Register = () => {
   const [password, setPassword] = useState('');
   const [password_confirmation, setPasswordConfirmation] = useState('');
   const dispatch = useDispatch();
-  const state = useSelector((state) => state.RegisterationReducer);
   const handleChangeEmail = (e) => setEmail(e.target.value);
   const handleChangePassword = (e) => setPassword(e.target.value);
   const handleChangePasswordConfirmation = (e) => setPasswordConfirmation(e.target.value);
-  useEffect(() => {
-    if (state.items) {
-      const { token } = state.items;
-      localStorage.setItem('token', token);
-      if (token) {
-        const { user_id } = jwt_decode(token);
-        localStorage.setItem('user_id', user_id);
-        history.push(`/todos/${user_id}`);
+
+  const TrySignIn = (e) => {
+    e.preventDefault();
+    dispatch(SignIn({ email, password, password_confirmation })).then(() => {
+      const res = authenticateUser();
+      if (Number.isInteger(res)) {
+        history.push(`/user/${res}/todos`);
+      } else {
+        const errorsContainer = document.getElementById('error');
+        const btn = document.createElement('button');
+        btn.innerHTML = 'X';
+        btn.classList.add(`${styles.errorBtn}`);
+        btn.addEventListener('click', (e) => {
+          e.target.parentElement.textContent = '';
+        });
+        errorsContainer.append(btn);
+        return res.map((error) => {
+          const div = document.createElement('div');
+          div.textContent = error;
+          div.classList.add(`${styles.error}`);
+          errorsContainer.append(div);
+          return true;
+        });
       }
-    }
-  }, [state]);
+      return true;
+    });
+  };
 
   const login = (e) => {
     e.preventDefault();
@@ -36,6 +51,7 @@ const Register = () => {
 
   return (
     <div id="register" className={styles.register}>
+      <div id="error" />
       <div className={styles.input}>
         <input type="email" onChange={(e) => handleChangeEmail(e)} value={email} placeholder="EMAIL" className={styles.inpt} />
       </div>
@@ -49,9 +65,7 @@ const Register = () => {
         <button
           className={styles.btn}
           type="submit"
-          onClick={() => {
-            dispatch(Registeration({ email, password, password_confirmation }));
-          }}
+          onClick={(e) => TrySignIn(e)}
         >
           Register
         </button>

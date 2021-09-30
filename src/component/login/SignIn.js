@@ -1,9 +1,9 @@
 /* eslint-disable camelcase */
-import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import jwt_decode from 'jwt-decode';
 import { SignIn } from '../../redux/action/todoAction';
+import { authenticateUser } from '../../helper/helper';
 import styles from './SignIn.module.css';
 
 const Signin = () => {
@@ -12,21 +12,32 @@ const Signin = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
-  const state = useSelector((state) => state.RegisterationReducer);
   const handleChangeEmail = (e) => setEmail(e.target.value);
   const handleChangePassword = (e) => setPassword(e.target.value);
 
-  useEffect(() => {
-    if (state.items) {
-      const { token } = state.items;
-      localStorage.setItem('token', token);
-      if (token) {
-        const { user_id } = jwt_decode(token);
-        localStorage.setItem('user_id', user_id);
-        history.push(`/todos/${user_id}`);
+  const TrySignIn = (e) => {
+    e.preventDefault();
+    dispatch(SignIn({ email, password })).then(() => {
+      const res = authenticateUser();
+      console.log(res); // eslint-disable-line
+      if (Number.isInteger(res)) {
+        history.push(`/user/${res}/todos`);
+      } else {
+        const errorsContainer = document.getElementById('error');
+        const btn = document.createElement('button');
+        btn.innerHTML = 'X';
+        btn.classList.add(`${styles.errorBtn}`);
+        btn.addEventListener('click', (e) => {
+          e.target.parentElement.textContent = '';
+        });
+        errorsContainer.append(btn);
+        const div = document.createElement('div');
+        div.textContent = res;
+        errorsContainer.append(div);
       }
-    }
-  }, [state]);
+      return true;
+    });
+  };
 
   const register = (e) => {
     e.preventDefault();
@@ -35,6 +46,7 @@ const Signin = () => {
 
   return (
     <div className={styles.loginForm}>
+      <div id="error" />
       <div id="login" className={styles.login}>
         <div className={styles.input}>
           <input type="email" onChange={(e) => handleChangeEmail(e)} value={email} placeholder="EMAIL" className={styles.inpt} />
@@ -46,9 +58,7 @@ const Signin = () => {
           <button
             className={styles.btn}
             type="submit"
-            onClick={() => {
-              dispatch(SignIn({ email, password }));
-            }}
+            onClick={(e) => TrySignIn(e)}
           >
             Sign In
           </button>

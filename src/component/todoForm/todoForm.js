@@ -1,14 +1,16 @@
 /* eslint-disable camelcase */
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import { PostData } from '../../redux/action/todoAction';
 import styles from './todoForm.module.css';
 
 const TodoForm = () => {
+  const { id } = useParams();
+  const user_id = id;
   const dispatch = useDispatch();
   const [title, SetTitle] = useState('');
   const [created_by, SetcreatedBy] = useState('');
-  const user_id = localStorage.getItem('user_id');
   return (
     <div className={styles.wrapper}>
       <form
