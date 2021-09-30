@@ -30,7 +30,6 @@ const Todo = ({ todo }) => {
         />
       </div>
       <div className={styles.buttons}>
-        <button type="button" onClick={() => history.push(`/todos/${id}/items`)}>View</button>
         <button type="button" onClick={() => EditItems()}>Edit</button>
         <button type="button" onClick={() => dispatch(DeleteTodo(id))}>Delete</button>
         <button
