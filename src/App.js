@@ -1,5 +1,6 @@
 import { Switch, Route, Redirect } from 'react-router-dom';
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import Signin from './component/login';
 import Register from './component/register';
 import todosList from './component/todoList';
@@ -9,6 +10,8 @@ import { windowReload } from './helper/helper';
 import './App.css';
 
 function App() {
+  const state = useSelector((state) => state.RegisterationReducer);
+  useEffect(() => {}, [state]);
   if (windowReload()) {
     return (
       <div className="App">
