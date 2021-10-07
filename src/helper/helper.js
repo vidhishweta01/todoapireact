@@ -30,4 +30,4 @@ export const windowReload = () => {
   const { RegisterationReducer } = store.getState();
   if (!RegisterationReducer.Item) return true;
   return false;
-}
+};
