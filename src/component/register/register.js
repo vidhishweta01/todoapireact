@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { authenticateUser } from '../../helper/helper';
-import { SignIn } from '../../redux/action/todoAction';
+import { Registeration } from '../../redux/action/todoAction';
 import styles from './register.module.css';
 
 const Register = () => {
@@ -19,7 +19,7 @@ const Register = () => {
 
   const TrySignIn = (e) => {
     e.preventDefault();
-    dispatch(SignIn({ email, password, password_confirmation })).then(() => {
+    dispatch(Registeration({ email, password, password_confirmation })).then(() => {
       const res = authenticateUser();
       if (Number.isInteger(res)) {
         history.push(`/user/${res}/todos`);

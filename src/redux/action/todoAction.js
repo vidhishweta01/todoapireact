@@ -8,7 +8,7 @@ const Registeration = (data) => async (dispatch) => {
   try {
     const response = await axios({
       method: 'post',
-      url: 'https://vast-eyrie-23535.herokuapp.com/api/v1/registeration',
+      url: 'https://secure-ocean-64470.herokuapp.com/api/v1/registeration',
       headers: {
         'Content-Type': 'application/json',
       },
@@ -26,7 +26,7 @@ const SignIn = (data) => async (dispatch) => {
   try {
     const response = await axios({
       method: 'post',
-      url: 'https://vast-eyrie-23535.herokuapp.com/api/v1/login',
+      url: 'https://secure-ocean-64470.herokuapp.com/api/v1/login',
       headers: {
         'Content-Type': 'application/json',
       },
@@ -52,7 +52,7 @@ const FetchData = (toke) => async (dispatch) => {
   });
   console.log(token); // eslint-disable-line
   try {
-    const response = await axios.get('https://vast-eyrie-23535.herokuapp.com/api/v1/todos',
+    const response = await axios.get('https://secure-ocean-64470.herokuapp.com/api/v1/todos',
       {
         headers: {
           'Content-Type': 'application/json',
@@ -77,7 +77,7 @@ const PostData = (data) => async (dispatch) => {
   try {
     const response = await axios({
       method: 'post',
-      url: 'https://vast-eyrie-23535.herokuapp.com/api/v1/todos',
+      url: 'https://secure-ocean-64470.herokuapp.com/api/v1/todos',
       headers: {
         'Content-Type': 'application/json',
         token,
@@ -96,7 +96,7 @@ const UpdateTodo = (id, obj) => async (dispatch) => {
   try {
     const response = await axios({
       method: 'patch',
-      url: `https://vast-eyrie-23535.herokuapp.com/v1/todos/${id}`,
+      url: `hhttps://secure-ocean-64470.herokuapp.com/api/v1/todos/${id}`,
       headers: {
         'Content-Type': 'application/json',
         token,
@@ -115,7 +115,7 @@ const DeleteTodo = (id) => async (dispatch) => {
   try {
     const response = await axios({
       method: 'delete',
-      url: `https://vast-eyrie-23535.herokuapp.com/api/v1/todos/${id}`,
+      url: `https://secure-ocean-64470.herokuapp.com/api/v1/todos/${id}`,
       headers: {
         'Content-Type': 'application/json',
         token,
@@ -124,6 +124,82 @@ const DeleteTodo = (id) => async (dispatch) => {
     dispatch({ type: ActionTypes.DeleteTodoSuccess, payload: response.data });
   } catch (error) {
     dispatch({ type: ActionTypes.DeleteTodoFailure, error });
+  }
+};
+
+export const GetItems = (id) => async (dispatch) => {
+  dispatch({ type: ActionTypes.GET_ITEMS_LOADING });
+  console.log('here');
+
+  try {
+    const response = await axios({
+      method: 'get',
+      url: `https://secure-ocean-64470.herokuapp.com/api/v1/todos/${id}/items`,
+      headers: {
+        'Content-Type': 'application/json',
+        token,
+      },
+    });
+    dispatch({ type: ActionTypes.GET_ITEMS_SUCCESS, payload: response.data });
+    console.log('here2');
+  } catch (error) {
+    dispatch({ type: ActionTypes.GET_ITEMS_FAILURE, error });
+  }
+};
+
+export const PostItems = (id, obj) => async (dispatch) => {
+  dispatch({ type: ActionTypes.POST_ITEMS_LOADING });
+  console.log(obj);
+  try {
+    const response = await axios({
+      method: 'post',
+      url: `https://secure-ocean-64470.herokuapp.com/api/v1/todos/${id}/items`,
+      headers: {
+        'Content-Type': 'application/json',
+        token,
+      },
+      data: obj,
+    });
+    dispatch({ type: ActionTypes.POST_ITEMS_SUCCESS, payload: response.data });
+  } catch (error) {
+    dispatch({ type: ActionTypes.POST_ITEMS_FAILURE, error });
+  }
+};
+
+export const UpdateItem = (todoId, itemId, obj) => async (dispatch) => {
+  dispatch({ type: ActionTypes.UPDATE_ITEMS_LOADING });
+
+  try {
+    const response = await axios({
+      method: 'put',
+      url: `https://secure-ocean-64470.herokuapp.com/api/v1/todos/${todoId}/items/${itemId}`,
+      headers: {
+        'Content-Type': 'application/json',
+        token,
+      },
+      data: obj,
+    });
+    dispatch({ type: ActionTypes.UPDATE_ITEMS_SUCCESS, payload: response.data });
+  } catch (error) {
+    dispatch({ type: ActionTypes.UPDATE_ITEMS_FAILURE, error });
+  }
+};
+
+export const DeleteItem = (todoId, itemId) => async (dispatch) => {
+  dispatch({ type: ActionTypes.DELETE_ITEMS_LOADING });
+
+  try {
+    const response = await axios({
+      method: 'delete',
+      url: `https://secure-ocean-64470.herokuapp.com/api/v1/todos/${todoId}/items/${itemId}`,
+      headers: {
+        'Content-Type': 'application/json',
+        token,
+      },
+    });
+    dispatch({ type: ActionTypes.DELETE_ITEMS_SUCCESS, payload: response.data });
+  } catch (error) {
+    dispatch({ type: ActionTypes.DELETE_ITEMS_FAILURE, error });
   }
 };
 
