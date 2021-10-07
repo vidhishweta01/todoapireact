@@ -25,3 +25,9 @@ export const IsSignedIn = () => {
   }
   return 'unauthorized action please sign in first!';
 };
+
+export const windowReload = () => {
+  const { RegisterationReducer } = store.getState();
+  if (!RegisterationReducer.Item) return true;
+  return false;
+}
