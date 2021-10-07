@@ -28,7 +28,6 @@ const ItemList = () => {
       return 'Loading data .............';
     }
     if (items) {
-      console.log('I m here');
       return (items.map((el) => <Item key={el.id} item={el} />));
     }
     if (deleteError) {

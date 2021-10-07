@@ -50,7 +50,6 @@ const FetchData = (toke) => async (dispatch) => {
   dispatch({
     type: ActionTypes.FetchLoading,
   });
-  console.log(token); // eslint-disable-line
   try {
     const response = await axios.get('https://secure-ocean-64470.herokuapp.com/api/v1/todos',
       {
@@ -129,7 +128,6 @@ const DeleteTodo = (id) => async (dispatch) => {
 
 export const GetItems = (id) => async (dispatch) => {
   dispatch({ type: ActionTypes.GET_ITEMS_LOADING });
-  console.log('here');
 
   try {
     const response = await axios({
@@ -141,7 +139,6 @@ export const GetItems = (id) => async (dispatch) => {
       },
     });
     dispatch({ type: ActionTypes.GET_ITEMS_SUCCESS, payload: response.data });
-    console.log('here2');
   } catch (error) {
     dispatch({ type: ActionTypes.GET_ITEMS_FAILURE, error });
   }
@@ -149,7 +146,6 @@ export const GetItems = (id) => async (dispatch) => {
 
 export const PostItems = (id, obj) => async (dispatch) => {
   dispatch({ type: ActionTypes.POST_ITEMS_LOADING });
-  console.log(obj);
   try {
     const response = await axios({
       method: 'post',
