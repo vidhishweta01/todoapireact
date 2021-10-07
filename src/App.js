@@ -1,26 +1,14 @@
 import { Switch, Route, Redirect } from 'react-router-dom';
-import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import React from 'react';
 import Signin from './component/login';
 import Register from './component/register';
 import todosList from './component/todoList';
 import Navbar from './component/Navbar';
 import ItemList from './component/itemslist/itemslist';
-import { windowReload } from './helper/helper';
 import './App.css';
 
 function App() {
-  const state = useSelector((state) => state.RegisterationReducer);
-  useEffect(() => {}, [state]);
-  if (windowReload()) {
-    return (
-      <div className="App">
-        <Switch>
-          <Route path="/" component={Signin} exact />
-        </Switch>
-      </div>
-    );
-  }
+  
   return (
     <div className="App">
       <Navbar />
