@@ -1,0 +1,38 @@
+.todo {
+  margin: 0;
+}
+
+.card {
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  margin: 20px auto;
+  padding: 25px 20px;
+  align-items: center;
+  background-color: #fff;
+  box-shadow: 4px 4px 3px #aaa;
+  border-radius: 8px;
+}
+
+.info {
+  width: 50%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.buttons {
+  text-align: right;
+  width: 50%;
+}
+
+.buttons > * {
+  background-color: rgb(236, 13, 13);
+  color: #fff;
+  margin: 0 3px;
+  padding: 5px 10px;
+  border: none;
+  font-weight: bold;
+  border-radius: 10px;
+  cursor: pointer;
+}

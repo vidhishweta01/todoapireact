@@ -1,23 +1,23 @@
-import logo from './logo.svg';
+import { Switch, Route, Redirect } from 'react-router-dom';
+import React from 'react';
+import Signin from './component/login';
+import Register from './component/register';
+import todosList from './component/todoList';
+import Navbar from './component/Navbar';
+import ItemList from './component/itemslist/itemslist';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Navbar />
+      <Switch>
+        <Route path="/" component={Signin} exact />
+        <Route path="/register" component={Register} />
+        <Route path="/user/:id/todos/" component={todosList} />
+        <Route path="/todo/:id/items/" component={ItemList} />
+        <Redirect to="/" />
+      </Switch>
     </div>
   );
 }

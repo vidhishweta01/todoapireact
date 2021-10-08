@@ -1,0 +1,12 @@
+.button {
+  padding-left: 2vw;
+  padding-right: 2vw;
+  padding-bottom: 1vw;
+  padding-top: 1vw;
+  background-color: black;
+  font-size: medium;
+  color: white;
+  border: none;
+  float: right;
+  cursor: pointer;
+}

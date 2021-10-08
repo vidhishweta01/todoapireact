@@ -1,0 +1,29 @@
+.wrapper {
+  width: 80vw;
+  margin: auto;
+}
+
+.form {
+  max-width: inherit;
+  margin: auto;
+  background-color: #fff;
+  padding: 20px;
+}
+
+.w100 {
+  width: 100%;
+  padding: 5px 0;
+  margin: 3px 0;
+}
+
+.btn {
+  margin: 10px 0;
+  padding: 8px 0;
+  background-color: #ff6026;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  font-weight: bold;
+  font-size: 18px;
+  cursor: pointer;
+}
