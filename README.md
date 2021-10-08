@@ -3,13 +3,13 @@
 todo API is front end for the Todo its a full stack web application it back end is built by Ruby on rails. here to access all the feature of app user can register or login 
 As a logged in user can create a task list each task can have it own list of items which can be created by user as per the task.
 
-![Screenshot](./screenshots/Screenshot1.png)
+![Screenshot](./screenshot/Screenshot1.png)
 
-![Screenshot](./screenshots/Screenshot2.png)
+![Screenshot](./screenshot/Screenshot2.png)
 
-![Screenshot](./screenshots/Screenshot3.png)
+![Screenshot](./screenshot/Screenshot3.png)
 
-![Screenshot](./screenshots/Screenshot4.png)
+![Screenshot](./screenshot/Screenshot4.png)
 
 ## Built With
 - JavaScript
